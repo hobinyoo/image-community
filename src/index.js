@@ -6,7 +6,7 @@ import App from './shared/App';
 import reportWebVitals from './reportWebVitals';
 import store from "./redux/configureStore";
 import { Provider } from "react-redux";
-
+//provider로 스토어 주입!
 ReactDOM.render(
   <Provider store={store}>
     <App />

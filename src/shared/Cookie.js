@@ -25,3 +25,5 @@ const getCookie = (name) => {
   }
   
   export { getCookie, setCookie, deleteCookie };
+
+  

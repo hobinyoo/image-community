@@ -11,15 +11,16 @@ import { apiKey } from "../shared/firebase";
 const Header = (props) => {
     const dispacth = useDispatch()
     const is_login = useSelector((state) => state.user.is_login);
-
     
     const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;
+    //firebase api 인증키!
     const is_session = sessionStorage.getItem(_session_key)? true : false;
+    //키 sessionStorage에서 키 값가져오기!
     
     if (is_login && is_session) {
         return (
             <React.Fragment>
-                <Grid is_flex>
+                <Grid is_flex padding="4px 16px">
                     <Grid>
                         <Text margin="0px" size="24px" bold>헬로</Text>
                     </Grid>
@@ -39,7 +40,7 @@ const Header = (props) => {
 
     return (
         <React.Fragment>
-            <Grid is_flex>
+            <Grid is_flex padding="4px 16px">
                 <Grid>
                     <Text margin="0px" size="24px" bold>
                         헬로

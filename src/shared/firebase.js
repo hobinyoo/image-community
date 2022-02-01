@@ -14,6 +14,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const apiKey = firebaseConfig.apiKey;
+//session 로그인 유지하기 위한 apikey값 전달!
 const auth = firebase.auth();
 
 export{auth, apiKey};
