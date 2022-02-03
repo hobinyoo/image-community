@@ -1,31 +1,35 @@
-import React from 'react';
-import { Route } from "react-router-dom"
-import PostList from '../pages/PostList';
-import Login from "../pages/Login";
-import Signup from "../pages/Signup";
-import { Grid } from "../elements";
-import Header from "../components/Header";
+import "./App.css";
+import React from "react";
+
+import { BrowserRouter, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
-//우리가 만든 history에 넘겨주고 싶을때!
-import {useDispatch} from "react-redux";
-import {actionCreators as userActions} from "../redux/modules/user";
 
-import {apiKey} from "./firebase";
+import PostList from "../pages/PostList";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+import PostWrite from "../pages/PostWrite";
+
+import Header from "../components/Header";
+import { Grid, Button } from "../elements";
+import Permit from "./Permit";
+
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+
+import { apiKey } from "./firebase";
 
 function App() {
-  const dispatch =  useDispatch();
+  const dispatch = useDispatch();
 
   const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;
-  const is_session = sessionStorage.getItem(_session_key)? true : false;
-  
- 
+  const is_session = sessionStorage.getItem(_session_key) ? true : false;
+
   React.useEffect(() => {
-    if(is_session){
+    if (is_session) {
       dispatch(userActions.loginCheckFB());
     }
-  }, []); 
-//[]값들이 바뀔 때 useeffect안에 함수를 재실행시켜줌! 컴포넌트 디드마운트역할을 수행해줌!
+  }, []);
 
   return (
     <React.Fragment>
@@ -34,9 +38,13 @@ function App() {
         <ConnectedRouter history={history}>
           <Route path="/" exact component={PostList} />
           <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup}/>
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/write" exact component={PostWrite} />
         </ConnectedRouter>
       </Grid>
+      <Permit>
+        <Button is_float text="+" _onClick={() => {history.push("/write");}}></Button>
+      </Permit>
     </React.Fragment>
   );
 }

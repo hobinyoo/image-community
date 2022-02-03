@@ -2,7 +2,10 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
+
 import user from "./modules/user";
+import Post from "./modules/post";
+
 
 // const middlewares = [thunk];
 export const history = createBrowserHistory();
@@ -11,6 +14,7 @@ export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   user: user,
+  post: Post,
   router: connectRouter(history),
   //리덕스에 넣어줌 우리가 만든 history랑 router가 연결이 됨!
 });

@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyC-wi9sORP3xYLS1Z3TUsccBMhNp_tU-e4",
@@ -16,7 +17,8 @@ firebase.initializeApp(firebaseConfig);
 const apiKey = firebaseConfig.apiKey;
 //session 로그인 유지하기 위한 apikey값 전달!
 const auth = firebase.auth();
+const firestore = firebase.firestore();
 
-export{auth, apiKey};
+export{auth, apiKey, firestore};
 
 
